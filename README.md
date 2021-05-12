@@ -30,7 +30,7 @@ note the use of `<Left>` - these are just to translated to a vim `inoreabbrev`
 command, so everything you're allowed to do the same things here. See
 `:h abbreviations` for more.
 
-##### snipexpr
+#### snipexpr
 
 you can use `snipexpr` to create abbreviations where the expansion is a
 vimscript expression that will be evaluated and its result will be used as the
@@ -42,7 +42,7 @@ strftime('%H:%M')
 }
 ```
 
-##### moving the cursor
+#### moving the cursor
 
 again, this is just a wrapper over abbreviations so you can go into normal mode
 and move your cursor around:
@@ -56,7 +56,7 @@ snip begin {
 }
 ```
 
-##### prefix
+#### prefix
 
 to make things a bit manageable, all abbreviations are actually prefixed. the
 default is '0', so the snip in the example above will be expanded when you type
@@ -64,11 +64,11 @@ default is '0', so the snip in the example above will be expanded when you type
 setting the `g:snap_prefix` variable. **note** that the prefix must be a
 keyword character otherwise it will make vim angry (see `:h iskeyword`).
 
-##### syntax highlighting
+#### syntax highlighting
 
 syntax highlighting for snap files is included, but it is very very basic.
 
-##### lazy loading
+#### lazy loading
 
 lazy loading is on by default, meaning your snips from `<filetype>.snap` will
 only be loaded when you open a file of that type (or for whatever reason a 
@@ -77,7 +77,7 @@ eager loading instead, where all files will be read and loaded on startup, and
 then the abbreviations will become available when the FileType event occurs. in
 most cases, there shouldn't be much of a difference between them.
 
-##### maxfuncdepth
+#### maxfuncdepth
 
 because of my poor vimscripting and parsing skills, you might get a
 'maxfuncdepth' error from vim if your snap file reaches around 17-20 snips. in

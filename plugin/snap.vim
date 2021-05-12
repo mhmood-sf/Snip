@@ -1,13 +1,13 @@
 " === Snip ====================================================================
 
 " === Options
+" idk, sometimes things break because of the file path separator
+let g:snap_pathsep = exists('g:snap_pathsep') ? g:snap_pathsep : '/'
 " prefix must be a keyword (see :h iskeyword)
 let g:snap_prefix  = exists('g:snap_prefix') ? g:snap_prefix : '0'
 let g:snap_dir     = exists('g:snap_dir') ? g:snap_dir : snap#get_defaultdir()
 " load snips lazily (when the filetype is opened) or eagerly (on startup)
 let g:snap_lazy    = exists('g:snap_lazy') ? g:snap_lazy : 1
-" idk, sometimes things break because of the file path separator
-let g:snap_pathsep = exists('g:snap_pathsep') ? g:snap_pathsep : '/'
 
 " =============================================================================
 
