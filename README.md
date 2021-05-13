@@ -21,14 +21,13 @@ snap files are simple files used for storing your snips. for example:
 snip psvm {
 public static void main()<Left>
 }
-
 ```
 
 the keyword 'snip' is used to define an abbreviation, the name comes after
 that, and then curly braces inside which is the expansion for the abbreviation.
-note the use of `<Left>` - these are just to translated to a vim `inoreabbrev`
-command, so everything you're allowed to do the same things here. See
-`:h abbreviations` for more.
+note the use of `<Left>` - these snips are just to translated to a vim
+`inoreabbrev` command, so everything you're allowed to do the same things here.
+See `:h abbreviations` for more.
 
 #### snipexpr
 
@@ -60,7 +59,7 @@ snip begin {
 
 to make things a bit manageable, all abbreviations are actually prefixed. the
 default is '0', so the snip in the example above will be expanded when you type
-'0begin' and then a space (or a keyword character). you can change this by
+'0begin' and then a space (or a non-keyword character). you can change this by
 setting the `g:snap_prefix` variable. **note** that the prefix must be a
 keyword character otherwise it will make vim angry (see `:h iskeyword`).
 
@@ -80,6 +79,5 @@ most cases, there shouldn't be much of a difference between them.
 #### maxfuncdepth
 
 because of my poor vimscripting and parsing skills, you might get a
-'maxfuncdepth' error from vim if your snap file reaches around 17-20 snips. in
-this case, just set `maxfuncdepth` to a larger value (see `:h maxfuncdepth`).
-
+'maxfuncdepth' error from vim if your snap file gets larger (around 17-20 snips).
+in this case, just set `maxfuncdepth` to a larger value (see `:h maxfuncdepth`).
