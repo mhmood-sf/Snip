@@ -1,5 +1,7 @@
 # snap
 
+![preview](https://i.imgur.com/O4ROJel.gif)
+
 helps me organize vim's abbreviations, and pretend i'm using snippets.
 
 ### usage
