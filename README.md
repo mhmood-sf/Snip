@@ -26,8 +26,8 @@ public static void main()<Left>
 the keyword 'snip' is used to define an abbreviation, the name comes after
 that, and then curly braces inside which is the expansion for the abbreviation.
 note the use of `<Left>` - these snips are just to translated to a vim
-`inoreabbrev` command, so everything you're allowed to do the same things here.
-See `:h abbreviations` for more.
+`inoreabbrev` command, so everything you're allowed to do in the vim command,
+the same things you're allowed here. See `:h abbreviations` for more.
 
 #### snipexpr
 
