@@ -67,7 +67,9 @@ keyword character otherwise it will make vim angry (see `:h iskeyword`).
 
 #### syntax highlighting
 
-syntax highlighting for snap files is included, but it is very very basic.
+syntax highlighting for snap files is included, but it is very very basic:
+
+![Snap syntax highlighting](https://i.imgur.com/z4PEiaf.png)
 
 #### lazy loading
 
