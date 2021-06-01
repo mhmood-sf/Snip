@@ -6,19 +6,19 @@ let g:snap_dir     = exists('g:snap_dir') ? g:snap_dir : snap#get_defaultdir()
 " {"filetype": [snips]}
 let s:snips = {}
 
-function s:run_abbrv(type)
+function s:run_abbrv(type, local)
     " For '*', the dictionary key is 'autoload'
     let l:snapfile = a:type ==# '*' ? 'autoload' : a:type
 
     for snip in s:snips[l:snapfile]
         let l:abbr = 'inoreabbrev'              " Only insert mode, no remapping
         let l:expr = snip.expr ? '<expr>' : ''  " Check if it is a snipexpr
-        let l:buff = '<buffer>'                 " All snips are local to buffer
+        let l:buff = a:local ? '<buffer>' : ''  " Make snips local to buffer
         let l:siln = '<silent>'                 " Don't show abbr cmd being executed
         let l:name = g:snap_prefix . snip.name  " Join prefix and name
         let l:expn = snip.expansion             " The snip expansion
 
-        let l:cmd = join([l:abbr, l:expr, l:buff, l:name, l:expn], ' ')
+        let l:cmd = join([l:abbr, l:expr, l:buff, l:siln, l:name, l:expn], ' ')
 
         execute l:cmd
     endfor
@@ -29,7 +29,7 @@ function s:load_default()
 
     if filereadable(fname)
         let s:snips.autoload = snap#load_file(fname)
-        call s:run_abbrv('*')
+        call s:run_abbrv('*', 0)
     endif
 endfunction
 
@@ -42,10 +42,11 @@ function s:load_snapfile()
 
         if filereadable(l:fname)
             let s:snips[l:name] = snap#load_file(l:fname)
-            call s:run_abbrv(l:name)
+            echom "running abbrv for " . &filetype
+            call s:run_abbrv(l:name, 1)
         endif
     else
-        call s:run_abbrv(l:name)
+        call s:run_abbrv(l:name, 1)
     endif
 endfunction
 
