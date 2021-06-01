@@ -50,5 +50,5 @@ function s:load_snapfile()
 endfunction
 
 call s:load_default()
-autocmd FileType * call s:lazy_load()
+autocmd FileType * call s:load_snapfile()
 
