@@ -13,9 +13,9 @@ syn keyword snipsEsc Esc contained
 
 syn region snipsComment start='#' end='#'
 
-syn region snipsBlock start=/{/ end=/}/ contains=ALLBUT,snipsKeywords
-syn region snipsCharKey start=/</ end=/>/ contains=snipsEsc,snipsAll contained
-syn region snipsNMode start=/<Esc>/ end=/[ia]/ contains=snipsCharKey
+syn region snipsBlock   start=/{/     end=/}/        contains=ALLBUT,snipsKeywords
+syn region snipsCharKey start=/</     end=/>/        contains=snipsEsc contained
+syn region snipsNMode   start=/<Esc>/ end=/[iaoIAO]/ contains=snipsCharKey
 
 let b:current_syntax = 'snap'
 
@@ -24,5 +24,5 @@ hi def link snipsNMode     Number
 hi def link snipsBlock     String
 hi def link snipsComment   Comment
 hi def link snipsCharKey   Comment
-hi def link snipsKeywords  SpecialChar
+hi def link snipsKeywords  Keyword
 
