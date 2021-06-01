@@ -8,21 +8,21 @@ endif
 
 syntax case match
 
-syn keyword snipsKeywords snip snipexpr
-syn keyword snipsEsc Esc contained
+syn keyword snapKeywords snip snipexpr
+syn keyword snapEsc Esc contained
 
-syn region snipsComment start='#' end='#'
+syn region snapComment start='#' end='#'
 
-syn region snipsBlock   start=/{/     end=/}/        contains=ALLBUT,snipsKeywords
-syn region snipsCharKey start=/</     end=/>/        contains=snipsEsc contained
-syn region snipsNMode   start=/<Esc>/ end=/[iaoIAO]/ contains=snipsCharKey
+syn region snapBlock   start=/{/     end=/}/        contains=ALLBUT,snapKeywords
+syn region snapCharKey start=/</     end=/>/        contains=snapEsc contained
+syn region snapNMode   start=/<Esc>/ end=/[iaoIAO]/ contains=snapCharKey
 
 let b:current_syntax = 'snap'
 
-hi def link snipsEsc       Number
-hi def link snipsNMode     Number
-hi def link snipsBlock     String
-hi def link snipsComment   Comment
-hi def link snipsCharKey   Comment
-hi def link snipsKeywords  Keyword
+hi def link snapEsc       Number
+hi def link snapNMode     Number
+hi def link snapBlock     String
+hi def link snapComment   Comment
+hi def link snapCharKey   Comment
+hi def link snapKeywords  Keyword
 
