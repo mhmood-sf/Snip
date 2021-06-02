@@ -42,7 +42,6 @@ function s:load_snapfile()
 
         if filereadable(l:fname)
             let s:snips[l:name] = snap#load_file(l:fname)
-            echom "running abbrv for " . &filetype
             call s:run_abbrv(l:name, 1)
         endif
     else
