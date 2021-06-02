@@ -1,8 +1,6 @@
 
-<h4 align=center>
-    <h1>Snap</h1>
-    <img src="https://i.imgur.com/f6f4pxV.gif" alt="Snap preview"/>
-</h4>
+<h1 align="center">Snap</h1>
+<img src="https://i.imgur.com/f6f4pxV.gif" alt="Snap preview"/>
 
 ---
 
