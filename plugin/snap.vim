@@ -7,8 +7,8 @@ let g:snap_dir     = exists('g:snap_dir') ? g:snap_dir : snap#get_defaultdir()
 let s:snips = {}
 
 function s:run_abbrv(type, local)
-    " For '*', the dictionary key is 'autoload'
-    let l:snapfile = a:type ==# '*' ? 'autoload' : a:type
+    " For '*', the dictionary key is '_default'
+    let l:snapfile = a:type ==# '*' ? '_default' : a:type
 
     for snip in s:snips[l:snapfile]
         let l:abbr = 'inoreabbrev'              " Only insert mode, no remapping
@@ -25,10 +25,10 @@ function s:run_abbrv(type, local)
 endfunction
 
 function s:load_default()
-    let fname = g:snap_dir . '/autoload.snap'
+    let fname = g:snap_dir . '/_default.snap'
 
     if filereadable(fname)
-        let s:snips.autoload = snap#load_file(fname)
+        let s:snips['_default'] = snap#load_file(fname)
         call s:run_abbrv('*', 0)
     endif
 endfunction
