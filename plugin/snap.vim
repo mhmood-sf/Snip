@@ -6,7 +6,11 @@ let g:snap_dir     = exists('g:snap_dir') ? g:snap_dir : snap#get_defaultdir()
 " {"filetype": [snips]}
 let s:snips = {}
 
-function s:run_abbrv(type, local)
+function! s:add_to_completionlist(name, file)
+    call complete_add(#{word: a:name, menu: a:file . '.snap'})
+endfunction
+
+function! s:run_abbrv(type, local)
     " For '*', the dictionary key is '_default'
     let l:snapfile = a:type ==# '*' ? '_default' : a:type
 
@@ -21,10 +25,12 @@ function s:run_abbrv(type, local)
         let l:cmd = join([l:abbr, l:expr, l:buff, l:siln, l:name, l:expn], ' ')
 
         execute l:cmd
+
+        " call s:add_to_completionlist(l:name, l:snapfile)
     endfor
 endfunction
 
-function s:load_default()
+function! s:load_default()
     let fname = g:snap_dir . '/_default.snap'
 
     if filereadable(fname)
@@ -33,7 +39,7 @@ function s:load_default()
     endif
 endfunction
 
-function s:load_snapfile()
+function! s:load_snapfile()
     " Get the filetype of the current buffer
     let l:name = &filetype
 

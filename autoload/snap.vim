@@ -1,6 +1,6 @@
 " === Snap ====================================================================
 
-function snap#get_defaultdir() abort
+function! snap#get_defaultdir() abort
     let l:expanded = expand('$MYVIMRC')
     let l:modified = fnamemodify(l:expanded, ':p:h') . '/snap'
     return l:modified
@@ -9,13 +9,13 @@ endfunction
 " === HELPERS
 
 " Checks if end of file has been reached
-function s:check_eof(state)
+function! s:check_eof(state)
     return a:state.pos >= len(a:state.src)
 endfunction
 
 " Returns the current item in source (either a character or a token)
 " If the end of file has been reached, returns a null character
-function s:current(state)
+function! s:current(state)
     if s:check_eof(a:state)
         return nr2char(0) " nul character
     else
@@ -24,14 +24,14 @@ function s:current(state)
 endfunction
 
 " Increments current position of state
-function s:advance(state)
+function! s:advance(state)
     let a:state.pos = a:state.pos + 1
 endfunction
 
 " === SCANNER
 
 " Scans a curly brace delimited block
-function s:scanBlock(state)
+function! s:scanBlock(state)
     " Initialize token
     let l:token = #{type: 'BLOCK', lexeme: ''}
     " Keep track of depth curly braces depth,
@@ -72,7 +72,7 @@ function s:scanBlock(state)
 endfunction
 
 " Scans an identifier or a keyword
-function s:scanIdentifier(state)
+function! s:scanIdentifier(state)
     " Initialize token
     let l:token = #{type: '', lexeme: ''}
 
@@ -105,7 +105,7 @@ function s:scanIdentifier(state)
 endfunction
 
 " Tokenize source file
-function s:tokenize(state)
+function! s:tokenize(state)
     " Base case, finish after reaching eof
     if s:check_eof(a:state)
         return
@@ -141,7 +141,7 @@ endfunction
 " === PARSER
 
 " Looks for a KWSNIP token, otherwise errors
-function s:expectSnip(state)
+function! s:expectSnip(state)
     " Check keyword first - 0 means no expr, 1 means expr
     if s:current(a:state).type ==# 'KWSNIP'
         return 0
@@ -157,7 +157,7 @@ function s:expectSnip(state)
 endfunction
 
 " Looks for an identifier token, otherwise errors
-function s:expectIdent(state)
+function! s:expectIdent(state)
     " Check eof and token type first
     if s:check_eof(a:state) || s:current(a:state).type !=# 'IDENT'
         echoerr 'Snap: Expected identifier after keyword.'
@@ -172,7 +172,7 @@ function s:expectIdent(state)
 endfunction
 
 " Looks for a block token, otherwise errors
-function s:expectBlock(state)
+function! s:expectBlock(state)
     " Check eof and token type first
     if s:check_eof(a:state) || s:current(a:state).type !=# 'BLOCK'
         echoerr 'Snap: Expected block after identifier.'
@@ -187,7 +187,7 @@ function s:expectBlock(state)
 endfunction
 
 " Parses tokens for snap file
-function s:parse(state)
+function! s:parse(state)
     " Base case, finish when all tokens consumed
     if s:check_eof(a:state)
         return
@@ -220,14 +220,14 @@ endfunction
 " === Main
 
 " Initialize state and call parse function
-function s:parse_tokens(tokens)
+function! s:parse_tokens(tokens)
     let l:state = #{snips: [], src: a:tokens, pos: 0}
     call s:parse(l:state)
     return l:state.snips
 endfunction
 
 " Initialize state and call tokenize function
-function s:parse_raw(raw)
+function! s:parse_raw(raw)
     let l:chars = split(a:raw, '\zs')
     let l:state = #{tokens: [], src: l:chars, pos: 0}
     call s:tokenize(l:state)
@@ -235,7 +235,7 @@ function s:parse_raw(raw)
 endfunction
 
 " Parses and loads snips from a snap file
-function snap#load_file(path)
+function! snap#load_file(path)
     let l:raw = join(readfile(a:path), '')
     let l:tokens = s:parse_raw(l:raw)
     let l:snips_list = s:parse_tokens(l:tokens)
