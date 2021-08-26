@@ -24,6 +24,7 @@ CONTENTS                                                         *SnipContents*
         2.2 Syntax ....................... |SnipSyntax|
         2.3 snipexpr ..................... |SnipSnipExpr|
         2.4 Prefix ....................... |SnipPrefix|
+        2.5 Eat() ........................ |SnipEat|
     3. Troubleshooting ................... |SnipTrouble|
     4. Contributing ...................... |SnipContributing|
     5. Bugs .............................. |SnipBugs|
@@ -93,6 +94,35 @@ and then a space (or a keyword character). You can specify your own prefix by
 setting the `g:snip_prefix` variable. Note that the prefix must be a
 keyword character otherwise the abbreviation may not function properly (see
 `:h iskeyword`).
+
+-------------------------------------------------------------------------------
+2.5 Eat()                                                             *SnipEat*
+                                                                        *Eat()*
+
+When abbreviations are expanded, the non-keyword character that triggered the
+expansion is also inserted to the buffer. This can sometimes be inconvenient.
+The `Eat()` function is provided to consume this character: >
+
+    # consume expansion character for snip abbreviations #
+    snip hw {
+    Hello, World<C-R>=Eat()<CR>
+    }
+
+For `snip` abbreviations, simply append `<C-R>=Eat()<CR>` to the end of the
+snippet.
+
+    # consume expansion character for snipexpr abbreviations #
+    snipexpr time {
+    strftime('%H:%M') . Eat()
+    }
+
+For `snipexpr` abbreviations, simply concatenate the expression with `Eat()`.
+
+`Eat()` can also take one optional argument: the pattern matched when checking
+whether to consume the character or not. By default, this is set to `\s`, which
+matches all whitespace, but could be, for example, `\.` if you only want a
+period to be consumed after it is used to expand the abbreviation. See
+`:h abbreviations` for more.
 
 ===============================================================================
 3. Troubleshooting                                                *SnipTrouble*
