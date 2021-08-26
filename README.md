@@ -1,8 +1,5 @@
 
 <h1 align="center">Snip</h1>
-<img src="https://i.imgur.com/f6f4pxV.gif" alt="Snip preview"/>
-
----
 
 ### Quick Start
 
@@ -23,6 +20,8 @@ space.
 See `:h snip` for a more thorough introduction.
 
 ### Snip files
+
+> ⚠ Work-in-progress! Contributions appreciated!
 
 You can find and share snip files at
 [quintik/snipfiles](https://github.com/quintik/snipfiles).
