@@ -1,8 +1,6 @@
-" === Snap ====================================================================
-
-function! snap#get_defaultdir() abort
+function! snip#get_defaultdir() abort
     let l:expanded = expand('$MYVIMRC')
-    let l:modified = fnamemodify(l:expanded, ':p:h') . '/snap'
+    let l:modified = fnamemodify(l:expanded, ':p:h') . '/snip'
     return l:modified
 endfunction
 
@@ -44,7 +42,7 @@ function! s:scanBlock(state)
         " If we reach eof, it means there is
         " a missing closing brace.
         if s:check_eof(a:state)
-            echoerr 'Snap: Unexpected end of file. Missing }'
+            echoerr 'Snip: Unexpected end of file. Missing }'
             return
         else
             " For every opening brace, increase depth by one
@@ -148,7 +146,7 @@ function! s:expectSnip(state)
     elseif s:current(a:state).type ==# 'KWSNIPEXPR'
         return 1
     else
-        echoerr 'Snap: Expected keyword snip or snipexpr'
+        echoerr 'Snip: Expected keyword snip or snipexpr'
         " Set position to length so that check_eof
         " returns true and parsing does not continue
         let a:state.pos = len(a:state.src)
@@ -160,7 +158,7 @@ endfunction
 function! s:expectIdent(state)
     " Check eof and token type first
     if s:check_eof(a:state) || s:current(a:state).type !=# 'IDENT'
-        echoerr 'Snap: Expected identifier after keyword.'
+        echoerr 'Snip: Expected identifier after keyword.'
         " Set source position to length to ensure
         " parsing does not continue
         let a:state.pos = len(a:state.src)
@@ -175,7 +173,7 @@ endfunction
 function! s:expectBlock(state)
     " Check eof and token type first
     if s:check_eof(a:state) || s:current(a:state).type !=# 'BLOCK'
-        echoerr 'Snap: Expected block after identifier.'
+        echoerr 'Snip: Expected block after identifier.'
         " Set source position to length to ensure
         " parsing does not continue
         let a:state.pos = len(a:state.src)
@@ -186,13 +184,13 @@ function! s:expectBlock(state)
     endif
 endfunction
 
-" Parses tokens for snap file
+" Parses tokens for snip file
 function! s:parse(state)
     " Base case, finish when all tokens consumed
     if s:check_eof(a:state)
         return
     else
-        " Follow snap file syntax, first snip/snipexpr keyword:
+        " Follow snip file syntax, first snip/snipexpr keyword:
         let l:expr = s:expectSnip(a:state)
         call s:advance(a:state)
 
@@ -234,8 +232,8 @@ function! s:parse_raw(raw)
     return l:state.tokens
 endfunction
 
-" Parses and loads snips from a snap file
-function! snap#load_file(path)
+" Parses and loads snips from a snip file
+function! snip#load_file(path)
     let l:raw = join(readfile(a:path), '')
     let l:tokens = s:parse_raw(l:raw)
     let l:snips_list = s:parse_tokens(l:tokens)
