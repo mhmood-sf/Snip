@@ -13,7 +13,7 @@
                                  | ▓▓         ~
                                   \▓▓         ~
 
-        Vim plugin to organize and manage your abbreviations!
+        A pseudo-snippet-engine based on vim abbreviations!
 
 ===============================================================================
 CONTENTS                                                         *SnipContents*
@@ -90,10 +90,10 @@ will be evaluated and its result will be used as the expansion: >
 
 To make snips more manageable, all snips are actually prefixed. The default is
 '0', so the snip in the example above will be expanded when you type '0time'
-and then a space (or a keyword character). You can specify your own prefix by
-setting the `g:snip_prefix` variable. Note that the prefix must be a
-keyword character otherwise the abbreviation may not function properly (see
-`:h iskeyword`).
+and then a space (or any other non-keyword character). You can specify your own
+prefix by setting the `g:snip_prefix` variable. Note that the prefix must be a
+keyword character, otherwise the abbreviation may not function properly (see
+`:h iskeyword` and `:h abbreviations`).
 
 -------------------------------------------------------------------------------
 2.5 Eat()                                                             *SnipEat*
@@ -109,7 +109,7 @@ The `Eat()` function is provided to consume this character: >
     }
 
 For `snip` abbreviations, simply append `<C-R>=Eat()<CR>` to the end of the
-snippet.
+snippet. >
 
     # consume expansion character for snipexpr abbreviations #
     snipexpr time {
@@ -119,15 +119,15 @@ snippet.
 For `snipexpr` abbreviations, simply concatenate the expression with `Eat()`.
 
 `Eat()` can also take one optional argument: the pattern matched when checking
-whether to consume the character or not. By default, this is set to `\s`, which
-matches all whitespace, but could be, for example, `\.` if you only want a
+whether to consume the character or not. By default, this is set to `'\s'`, which
+matches all whitespace, but could be, for example, `'\.'` if you only want a
 period to be consumed after it is used to expand the abbreviation. See
 `:h abbreviations` for more.
 
 ===============================================================================
 3. Troubleshooting                                                *SnipTrouble*
 
-- When your snip file gets larger (around 17-20 snips), you may get a
+- When your snip file gets larger (around 15+ snips), you may get a
   `maxfuncdepth` error from vim. This is because vim limits recursive function
   calls to 100 by default, which may be exceeded by the parser for snip files.
   In this case, you can simply increase the value of maxfuncdepth in your
@@ -153,7 +153,7 @@ period to be consumed after it is used to expand the abbreviation. See
 
 There are several ways you can contribute:
 - You can, of course, help by directly making improvements to the code. The
-  parser for snip files in particular could be much better.
+  parser for snip files in particular has a lot of room for improvement.
 - You can also help with improving the documentation if you find errors or
   find it confusing.
 - You can help improve the syntax highlighting if you find issues with it.
