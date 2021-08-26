@@ -1,8 +1,5 @@
 
 <h1 align="center">Snip</h1>
-<img src="https://i.imgur.com/f6f4pxV.gif" alt="Snip preview"/>
-
----
 
 ### Quick Start
 
