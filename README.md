@@ -1,5 +1,53 @@
+<h4 align="center">
+<bold>
+<pre>
+    ______                          
+   /      \                         
+  |  ▓▓▓▓▓▓\_______  __  ______     
+  | ▓▓___\▓▓       \|  \/      \    
+   \▓▓    \| ▓▓▓▓▓▓▓\\▓▓  ▓▓▓▓▓▓\   
+   _\▓▓▓▓▓▓\ ▓▓  | ▓▓\ \ ▓▓  | ▓▓   
+  |  \__| ▓▓ ▓▓  | ▓▓ ▓▓ ▓▓__/ ▓▓   
+   \▓▓    ▓▓ ▓▓  | ▓▓ ▓▓ ▓▓    ▓▓   
+    \▓▓▓▓▓▓ \▓▓   \▓▓\▓▓ ▓▓▓▓▓▓▓    
+                       | ▓▓         
+                       | ▓▓         
+                        \▓▓         
+</pre>
+<bold>
+</h4>
 
-<h1 align="center">Snip</h1>
+### What's this?
+
+Snip is a plugin for creating and managing vim abbreviations, and is particularly
+useful for those who use abbreviations as a lightweight alternative to snippets
+(hence a pseudo-snippet-engine).
+
+### Why not UltiSnips or SnipMate or XYZ?
+
+Snip is based on vim abbreviations, rather than being a full-fledged
+snippet engine. If you're looking for a powerful snippet engine with lots of
+features, this plugin probably isn't what you want.
+
+Instead, Snip is for those who want a quick and lightweight solution
+for creating snippets and managing abbreviations, without too much
+complexity. It's a lightweight plugin without any other dependencies,
+and is written purely in vimscript.
+
+### Installation
+
+If you use Plug:
+```
+Plug "quintik/Snip"
+```
+Vundle:
+```
+Plugin "quintik/Snip"
+```
+Packer:
+```
+use "quintik/Snip"
+```
 
 ### Quick Start
 
