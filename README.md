@@ -21,6 +21,8 @@ See `:h snip` for a more thorough introduction.
 
 ### Snip files
 
+> ⚠ Work-in-progress! Contributions appreciated!
+
 You can find and share snip files at
 [quintik/snipfiles](https://github.com/quintik/snipfiles).
 
